@@ -1,0 +1,55 @@
+name:          instinct
+version:       0.1.0
+category:      AI
+synopsis:      Fast artificial neural networks in pure Haskell
+maintainer:    Ertugrul Söylemez <es@ertes.de>
+author:        Ertugrul Söylemez <es@ertes.de>
+copyright:     (c) 2013 Ertugrul Söylemez
+license:       BSD3
+license-file:  LICENSE
+build-type:    Simple
+cabal-version: >= 1.10
+extra-source-files: README.md
+description:
+    Fast artificial neural networks in pure Haskell.  Please note that
+    this library is /not/ a binding to the FANN C library.
+
+Source-repository head
+    type:     git
+    location: git://github.com/ertes/instinct.git
+
+library
+    build-depends:
+        base >= 4.5 && < 5
+    default-language: Haskell2010
+    default-extensions:
+    ghc-options: -W
+    exposed-modules:
+
+test-suite tests
+    type: exitcode-stdio-1.0
+    build-depends:
+        base >= 4.5 && < 5,
+        instinct,
+        smallcheck,
+        test-framework,
+        test-framework-smallcheck,
+        test-framework-th
+    default-language: Haskell2010
+    default-extensions:
+        TemplateHaskell
+    ghc-options: -W -threaded -rtsopts -with-rtsopts=-N
+    hs-source-dirs: test
+    main-is: Props.hs
+
+benchmark bench
+    type: exitcode-stdio-1.0
+    build-depends:
+        base >= 4.5 && < 5,
+        criterion,
+        instinct
+    default-language: Haskell2010
+    default-extensions:
+    ghc-options: -W -O2 -threaded -rtsopts -with-rtsopts=-N
+    hs-source-dirs: test
+    main-is: Bench.hs
